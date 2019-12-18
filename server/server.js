@@ -1,5 +1,7 @@
 require('./config/config')
 const express = require('express')
+const mongoose = require('mongoose')
+
 const app = express()
 
 const bodyParser = require('body-parser')
@@ -9,36 +11,18 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.get('/usuario', function (req, res) {
-  res.json('get usuario')
-})
+app.use(require('./controller/usuario'))
+// mongoose.connect('mongodb://localhost:27017/cafe', {
+mongoose.connect(process.env.URLDB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
+}, (err, res) => {
+  if (err) throw err
+  console.log('DB Running')
+});
 
-app.post('/usuario', function (req, res) {
-  let body = req.body
-  if (body.name === undefined) {
-    res.status(400).json({
-      ok: false,
-      desc: 'name in not optional'
-    })
-  }else{
-    res.json({
-      'persona': body
-    })
-  }
-})
-
-app.put('/usuario/:id', function (req, res) {
-  let id = req.params.id
-  res.json({
-    'Rest': 'put',
-    id
-  })
-})
-
-app.delete('/usuario', function (req, res) {
-  res.json('delete usuario')
-})
- 
 app.listen(process.env.PORT, () => {
     console.log(`Listening in the port ${process.env.PORT}`)
 })
