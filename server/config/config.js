@@ -9,3 +9,18 @@ else process.env.URLDB = process.env.mongo_url
 
 // se ingresa el siguiente comando en la terminal para configurar la variable de ambiente
 // heroku config:set mongo_url="XXXXXXX"
+// heroku config para ver las variables configuradas
+
+
+/////////////////////////////////
+// CONFIGURACIÓN DEL JWT
+/////////////////////
+
+// Vencimiento del Token
+process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30
+
+// SEED de autenticación
+process.env.SEED = process.env.SEED || 'secretDev'
+
+/////////////////////////////////
+

@@ -11,8 +11,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.use(require('./controller/usuario'))
-// mongoose.connect('mongodb://localhost:27017/cafe', {
+// configuración global de rutas
+app.use(require('./controller/index'))
+
+// conexion de la base de datos
 mongoose.connect(process.env.URLDB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
