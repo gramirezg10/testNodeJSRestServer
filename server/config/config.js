@@ -24,3 +24,8 @@ process.env.SEED = process.env.SEED || 'secretDev'
 
 /////////////////////////////////
 
+////////////////////////////////
+// CONFIGURACIÓN DE GOOGLE
+process.env.CLIENT_ID = process.env.CLIENT_ID || '96773221922-hc84ob3u08rgs8rpjs6k8rrla9bdhlq3.apps.googleusercontent.com'
+
+/////////////////////
